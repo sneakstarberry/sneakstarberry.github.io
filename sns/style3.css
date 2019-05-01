@@ -1,0 +1,17 @@
+/* HTML 태그 전체에 영향 */
+.d1{
+    width:80%;
+    background-color:  #feeadf;
+    margin: 0 auto;
+}
+.d2{
+    width: 70%;
+    margin:  auto;
+}
+.img1{
+    width: 100%;
+    text-align: center;
+}
+/* 
+    title이라는 아이디를 가진 요소
+*/
