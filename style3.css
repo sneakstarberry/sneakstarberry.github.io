@@ -1,0 +1,22 @@
+/* HTML 태그 전체에 영향 */
+.container{
+    width:80%;
+    background-color:  #feeadf;
+    margin: 0 auto;
+}
+.container{
+    width:70%;    
+}
+hr{
+    color: white;
+    background-color: white;
+    border-color: white;
+    border: 10pt white;
+}
+.img1{
+    width: 100%;
+    text-align: center;
+}
+/* 
+    title이라는 아이디를 가진 요소
+*/
