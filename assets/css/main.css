@@ -46,6 +46,15 @@ h3:before {
 	letter-spacing: 0.2em;
 }
 
+.jumbotron-img {
+		display: none !important;
+}
+.jumbotron-header{
+	height: 230px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .footer {
 	position: absolute;
 	padding-right: 1em;
