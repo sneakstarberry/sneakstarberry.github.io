@@ -6,7 +6,7 @@ published: 2020-04-02 15:20:00 +0200
 comments: true
 categories: development
 tags: [test,test2]
-github: "https://github.com/DSC-Sahmyook/"
+github: "https://github.com/sneakstarberry/"
 # noimage: true
 ---
 
