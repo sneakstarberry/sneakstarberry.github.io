@@ -13,14 +13,14 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: DSC-Sahmyook Tech Blog
-name: DSC-Sahmyook Tech Blog
+title: KiHongPark's Tech Blog
+name: KiHongPark's Tech Blog
 description: 
   This is a blog of someone passionate about technology who wants to share some of the things he knows
   about Application Development, Integration, Cloud, Big Data and Digital Transformation
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://DSC-Sahmyook.github.io"
-github_username:  DSC-Sahmyook
+url: "https://sneakstarberry.github.io"
+github_username:  sneakstarberry
 
 # jekyll-paginate configuration
 paginate: 10
