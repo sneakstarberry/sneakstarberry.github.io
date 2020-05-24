@@ -1,0 +1,147 @@
+I"� <p>포스트를 작성하는 방법에 대하여 알려드리도록 하겠습니다.
+이후 내용에 따라 포스트를 작성 하시면 됩니다.
+<!--more--></p>
+
+<h2 id="github-클론">Github 클론</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/DSC-Sahmyook/DSC-Sahmyook.github.io.git
+</code></pre></div></div>
+
+<p>깃 클론을 하기 앞서 클론을 받을 새로운 폴더를 생성해줍니다.</p>
+
+<p>생성 후 위 명령어를 통해 깃에서 블로그 페이지를 클론 받을 수 있습니다.</p>
+
+<p>(만일 git이 설치되어 있지 않을 시 <a href="https://git-scm.com/downloads">링크</a>를 통해 다운을 받으시길 바랍니다.)</p>
+
+<h2 id="파일트리">파일트리</h2>
+
+<p>클론이 완료되면 다음과 같은 파일트리를 가지게 될 것입니다.</p>
+
+<p><img src="/assets/images//posts/포스트-작성법/filetree.png" alt="Alt FileTree" /></p>
+
+<p>여기에서 <code class="highlighter-rouge">_posts</code>와 <code class="highlighter-rouge">assets</code>폴더에 집중해 주시길 바랍니다.</p>
+
+<h2 id="포스트-파일이름과-assets폴더-이름-설정">포스트 파일이름과 assets폴더 이름 설정</h2>
+
+<p>이 포스트 작성법 포스트를 예시로 삼아 설명드리도록 하겠습니다.</p>
+
+<ol>
+  <li>먼저 다음 이미지와 같이 이름을 맞춰줍니다.</li>
+</ol>
+
+<p><img src="/assets/images//posts/포스트-작성법/same_name.png" alt="Alt FileTree" /></p>
+
+<p>포스트는 <code class="highlighter-rouge">작성일자-포스트제목.md</code>양식으로 적어 주시면 됩니다. (<code class="highlighter-rouge">Year-Month-Day-title.md</code>)</p>
+
+<p>그리고 <code class="highlighter-rouge">assets</code>내부 위 폴더와 같은 위치인 파일트리의 <code class="highlighter-rouge">posts</code>에서 포스트 제목과 같은 이름의 폴더를 생성합니다.</p>
+
+<p>(위 사진을참고 해 주시면 감사하겠습니다.)</p>
+
+<ol>
+  <li>헤더 이미지 작성</li>
+</ol>
+
+<p>포스트에 보면 아래 이미지와 같이 헤더 이미지가 있습니다. 이는 넣어도 되고 넣지 않으셔도 괜찮습니다.</p>
+
+<p><img src="/assets/images//posts/포스트-작성법/top-img.png" alt="Alt FileTree" /></p>
+
+<p>만일 이미지를 넣지 않으신다면 이 부분은 넘어가셔도 좋습니다.</p>
+
+<p>만일 헤더 이미지를 넣으신다면 다음과 같습니다.</p>
+
+<p><img src="/assets/images//posts/포스트-작성법/top_example.png" alt="Alt FileTree" /></p>
+
+<p><code class="highlighter-rouge">assets</code>에 포스트 제목과 같은 이름으로 만든 폴더를 열어 줍니다. 이 폴더 안에 <code class="highlighter-rouge">top.jpg</code>(파일은 반드시 <code class="highlighter-rouge">jpg</code>여야합니다.)사진 파일을 위 사진과 같이 저장해 줍니다.  그렇다면 자동적으로 사진이 적용될 것입니다.</p>
+
+<p>ps. 사진 크기를 조정하지 않으면 전체화면에서 사진 크기가 이상해집니다. <del>css한지 너무 오래되어서….. 부탁드립니다….</del></p>
+
+<h2 id="포스트-작성법">포스트 작성법</h2>
+
+<p>자! 위와 같은 세팅이 전부 완료 되었다면 이제 정말로 포스트를 작성해야겠죠?</p>
+
+<ol>
+  <li>먼저 제목을 설정해줍니다.</li>
+</ol>
+
+<p>다음과 같은 양식으로 제목을 설정합니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+// 어떤 레이아웃을 이용할 것인지?
+layout: default
+// 포스트 제목은 파일이름과 같지 않아도 됩니다.
+title: "[공지] 포스트 작성법"
+//작성시간
+date: 2020-04-02 05:00:00 +0200
+published: 2020-04-02 05:00:00 +0200
+// 댓글 작성을 허가할 것인지(true, false)
+comments: true
+// 어떤 카테고리인지?
+categories: development
+// 태그는 정해져 있는 것이 아닌 관련 기술을 마음 껏 기술해주세요.(예시: [Docker, Go, Web])
+tags: [test,test2]
+// 본인 깃허브 주소 혹은 포스트에서 기술한 코드의 깃허브 레파지토리 주소
+github: "https://github.com/DSC-Sahmyook/"
+// 이미지를 넣을 것인지 아닌지 기본적으로 false인 듯 합니다.
+# noimage: true
+---
+</code></pre></div></div>
+
+<ol>
+  <li>이후에는 요약 글을 설정해주어야 합니다.</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+github: "https://github.com/sneakstarberry/"
+# noimage: true
+---
+포스트를 작성하는 방법에 대하여 알려드리도록 하겠습니다.
+이후 내용에 따라 포스트를 작성 하시면 됩니다.
+&lt;!--more--&gt;
+
+## Github 클론
+...
+</code></pre></div></div>
+
+<p>위와 같이 제목이 끝난 줄에 붙여서 작성을 해주시고 끝난 후 <code class="highlighter-rouge">&lt;!--more--&gt;</code>를 붙여서 끝났다는 것을 명시해 주시기 바랍니다.</p>
+
+<ol>
+  <li>이후 마크다운 문법에 따라 작성</li>
+</ol>
+
+<p>이후에는 마크다운 문법에 따라서 작성을 하면되는데 일반적인 마크다운과는 살짝 다른 <code class="highlighter-rouge">kramdown</code>문법을 사용하고 있습니다. <a href="https://kramdown.gettalong.org/quickref.html">링크</a>를 참조하여 작성을 하시면 될 것 같습니다.</p>
+
+<ol>
+  <li>사진 삽입</li>
+</ol>
+
+<p>마크다운 문법에 따라 사진 삽입을 하면 되지만 외부 사진이 아닌 로컬에 올린 사진을 이용하려면 사진 경로 설정이 약간 다릅니다.</p>
+
+<p>다음 사진은 이 포스트의 헤더에 쓰인 사진입니다. 이 사진을 예시로 설명드리도록 하겠습니다.</p>
+
+<p><img src="/assets/images//posts/포스트-작성법/top.jpg" alt="Alt HeaderImg" /></p>
+
+<p>위 사진과 같이 로컬에서 사진을 불러서 쓰고 싶다면 정확히 다음과 같이 쓰면 된다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>![Alt HeaderImg](/assets/images//posts/포스트-작성법/top.png)
+</code></pre></div></div>
+
+<p>그럼 위 코드를 분석해 보자</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">!</span><span class="p">[</span><span class="n">Alt</span> <span class="o">&lt;</span><span class="n">사진</span> <span class="n">설명</span><span class="o">&gt;</span><span class="p">](</span><span class="o">/</span><span class="n">assets</span><span class="o">/</span><span class="n">images</span><span class="c">//posts/포스트-작성법/&lt;올린 이미지 이름&gt;)</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">/posts/포스트-작성법</code>은 중괄호 두번으로 감싸고 <code class="highlighter-rouge">page.id</code>라고 적으면 조금이나마 줄여서 쓸 수 있다.</p>
+
+<p>기본적으로 &lt;&gt;사이에 들어있는 항목만 변환시켜주면 된다. <code class="highlighter-rouge">Alt</code>이후에는 사진이 로딩이 안될 때를 대비하거나 시각 장애인을 위해 사진을 설명해주는 줄임말을 넣어준다.</p>
+
+<p>이후 사진 경로를 정해줄때는 경로 마지막에 내가 assets에 넣어둔 사진 이미지 이름을 확장명까지 적어 줍니다.</p>
+
+<p>중간에 <code class="highlighter-rouge">page.id</code>는 폴더 경로가 함축된 것으로 /posts/<폴더이름>으로 구성되어 있다. 즉, 내가 /assets/images/posts의 다른 폴더에서 사진을 가져 오고 싶다면 /assets/images/posts/<폴더이름>으로 설정하면된다.  아래와 같이 말이다.</폴더이름></폴더이름></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>코드
+![Alt Example](/assets/images/posts/example-page/top.jpg)
+</code></pre></div></div>
+
+<p><img src="/assets/images/posts/example-page/top.jpg" alt="Alt Example" /></p>
+
+<h3 id="끝--디자인을-바꾸고-싶거나-보충내용이-있다면-언제나-환영입니다--제발-디자인-좀--그리고-깃-푸쉬한다고-바로-적용되진-않고-약간-텀이-있습니다-약간">끝!!!  디자인을 바꾸고 싶거나 보충내용이 있다면 언제나 환영입니다.  <del>제발 디자인 좀…</del>  그리고 깃 푸쉬한다고 바로 적용되진 않고 약간 텀이 있습니다. <del>약간….</del></h3>
+:ET

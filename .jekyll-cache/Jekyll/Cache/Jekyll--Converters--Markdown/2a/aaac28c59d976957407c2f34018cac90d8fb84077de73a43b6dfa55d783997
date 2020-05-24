@@ -1,0 +1,45 @@
+I"�<p>백준 4949 균형잡힌 세상문제 입니다.</p>
+
+<h1 id="백준-4949---균형잡힌-세상">백준 4949 - 균형잡힌 세상</h1>
+<p>대괄호(“[]”)와 소괄호(“()”)가 서로 짝이 맞춰져 있는지 확인하는 프로그램입니다.</p>
+
+<!--more-->
+<p><code class="highlighter-rouge">while</code>로 계속 반복을 하면서 <code class="highlighter-rouge">getline</code> 함수로 문자열을 받아와 줍니다. “.”ㅇㄹ 만나게 되면 멈춥니다. 
+ 먼저 왼쪽 괄호는 소괄호든 대괄호든 상관이 없습니다. 둘 다 스택에 넣어줍니다. 이후 오른쪽 괄호를 만났을 때가 중요합니다. 이미 들어가 있는 것이 소괄호인데 오른쪽 대괄호를 만났다면 이는 균형이 맞지 않는 것입니다. 이와 반대의 경우도 마찬가지 입니다. 바로 no를 출력하면 되겠습니다. 
+  하지만 똑같이 소괄호라면 pop메소드를 이용하여 빼주시고 같은행동을 반복합니다. 끝까지 <code class="highlighter-rouge">flag</code> 변수가 0이라면 <code class="highlighter-rouge">yes</code>를 출력시켜 줍니다.
+   나머지는 반복입니다.</p>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;stack&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="n">chr</span><span class="p">[</span><span class="mi">101</span><span class="p">];</span>
+    <span class="n">cin</span><span class="p">.</span><span class="n">getline</span><span class="p">(</span><span class="n">chr</span><span class="p">,</span> <span class="mi">101</span><span class="p">);</span>
+    <span class="n">stack</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">stk</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">chr</span><span class="p">,</span> <span class="s">"."</span><span class="p">))</span> <span class="k">break</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">strlen</span><span class="p">(</span><span class="n">chr</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">chr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'('</span> <span class="o">||</span> <span class="n">chr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">'['</span><span class="p">)</span> <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">chr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">chr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">')'</span><span class="p">){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">stk</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">==</span> <span class="sc">'('</span><span class="p">)</span> <span class="n">stk</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="k">else</span> <span class="p">{</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"no</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="n">flag</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="k">break</span><span class="p">;}</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">chr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">']'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">stk</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">==</span> <span class="sc">'['</span><span class="p">)</span> <span class="n">stk</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="k">else</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"no</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="k">break</span><span class="p">;}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"no</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="k">else</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"yes</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+:ET
