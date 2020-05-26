@@ -17,8 +17,8 @@ menu:
     link: /
   - name: Tags
     link: /tags
-  # - name: About
-  #   link: /about
+  - name: About
+    link: /about
   - name: Follow me
     submenu:
       - name: GitHub
