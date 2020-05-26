@@ -1,0 +1,80 @@
+I"�(<p>[C++]백준 11657 타임머신 입니다. 벨만-포드 알고리즘을 사용합니다.</p>
+
+<h1 id="c백준-11657---타임머신">[C++]백준 11657 - 타임머신</h1>
+<p><img src="/assets/images//posts/nojam11657/top.jpg" alt="Alt FileTree" />
+<!--more--></p>
+
+<p>벨만-포드 알고리즘을 이용하여 푸는 문제입니다. <br />
+솔직히 벨만-포드 알고리즘이 어떤 알고리즘인지 모르고 문제를 접하였고 알고리즘을 
+검색해 보았습니다.</p>
+
+<p>벨만-포드 알고리즘을 이해한 후 알고리즘에 따라 문제를 풀었습니다.</p>
+
+<p>벨만-포드 알고리즘은 최소 값을 구하는 알고리즘인데 다익스트라와 다른 점은 음수 사이클의
+  노드를 알 수 있다는 점에 있습니다. 이를 통해 음수로 무한히 가는 경우에는 “-1”을
+  출력 시켜줄 수 있었습니다.</p>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="cp">#define endl "\n"
+#define MAX 501
+#define INF 1&lt;&lt;30
+</span>
+<span class="k">struct</span> <span class="nc">edge</span><span class="p">{</span>
+  <span class="kt">int</span> <span class="n">from</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">to</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">cost</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">;</span>
+<span class="kt">long</span> <span class="kt">long</span> <span class="n">Dist</span><span class="p">[</span><span class="n">MAX</span><span class="p">];</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">edge</span><span class="o">&gt;</span> <span class="n">Edge</span><span class="p">;</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 입력 부분</span>
+  <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span> <span class="o">&gt;&gt;</span> <span class="n">M</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">N</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">Dist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">INF</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">M</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">From</span><span class="p">,</span> <span class="n">To</span><span class="p">,</span> <span class="n">Cost</span><span class="p">;</span>
+    <span class="n">edge</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">tmp</span><span class="p">.</span><span class="n">from</span> <span class="o">&gt;&gt;</span> <span class="n">tmp</span><span class="p">.</span><span class="n">to</span> <span class="o">&gt;&gt;</span> <span class="n">tmp</span><span class="p">.</span><span class="n">cost</span><span class="p">;</span>
+
+    <span class="n">Edge</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">// 벨만-포드 알고리즘 시작 N-1만큼 모든 수 탐색</span>
+  <span class="n">Dist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">Edge</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
+      <span class="kt">int</span> <span class="n">From</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">from</span><span class="p">;</span>
+      <span class="kt">int</span> <span class="n">To</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">to</span><span class="p">;</span>
+      <span class="kt">int</span> <span class="n">Cost</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">cost</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">Dist</span><span class="p">[</span><span class="n">From</span><span class="p">]</span> <span class="o">==</span> <span class="n">INF</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">Dist</span><span class="p">[</span><span class="n">To</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">Dist</span><span class="p">[</span><span class="n">From</span><span class="p">]</span> <span class="o">+</span> <span class="n">Cost</span><span class="p">)</span> <span class="n">Dist</span><span class="p">[</span><span class="n">To</span><span class="p">]</span> <span class="o">=</span><span class="n">Dist</span><span class="p">[</span><span class="n">From</span><span class="p">]</span> <span class="o">+</span> <span class="n">Cost</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="c1">// 음수 사이클인 노드 확인</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">Edge</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="kt">int</span> <span class="n">From</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">from</span><span class="p">;</span>
+      <span class="kt">int</span> <span class="n">To</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">to</span><span class="p">;</span>
+      <span class="kt">int</span> <span class="n">Cost</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">cost</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">Dist</span><span class="p">[</span><span class="n">From</span><span class="p">]</span> <span class="o">==</span> <span class="n">INF</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">Dist</span><span class="p">[</span><span class="n">To</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">Dist</span><span class="p">[</span><span class="n">From</span><span class="p">]</span> <span class="o">+</span> <span class="n">Cost</span><span class="p">){</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+      <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="c1">// 외딴 노드와 최솟값 출력</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">Dist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">INF</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">else</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Dist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+:ET
