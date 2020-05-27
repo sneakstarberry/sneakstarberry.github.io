@@ -96,6 +96,6 @@ python manage.py runserver
 
 이 명령어를 실행하게 되면 `Starting development server at http://127.0.0.1:8000/`라는 문구가 나올 것 입니다.문구를  `Ctrl + click`을 해줍니다.  그러면 아래와 같은 웹페이지가 보이게 될 것입니다. 안보인다구요? 그건.... 일단 내 잘못은 아닌듯 합니다.
 
-<img src="/assets/images/{{page.id}}/top.jpg" alt = "장고 기본 페이지" style = "width:700px">
+<img src="/assets/images/{{page.id}}/defaultPage.jpg" alt = "장고 기본 페이지" style = "width:700px">
 
 이상 포스팅을 마치겠습니다. ^^;
