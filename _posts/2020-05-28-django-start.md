@@ -98,4 +98,4 @@ python manage.py runserver
 
 <img src="/assets/images/{{page.id}}/top.jpg" alt = "장고 기본 페이지" style = "width:700px">
 
-이상 포스팅을 마치겠습니다. ^^
+이상 포스팅을 마치겠습니다. ^^;
