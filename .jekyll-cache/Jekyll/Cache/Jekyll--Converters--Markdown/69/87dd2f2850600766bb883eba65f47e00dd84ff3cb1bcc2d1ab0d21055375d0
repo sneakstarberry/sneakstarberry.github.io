@@ -1,0 +1,85 @@
+I"� <p>[C++]백준 10815 - 숫자카드
+이분 탐색 알고리즘을 통해 풀어야하는 문제입니다.</p>
+
+<!--more-->
+
+<h1 id="c백준-10815---숫자카드">[C++]백준 10815 - 숫자카드</h1>
+<p><img src="/assets/images/posts/nojam10815/problem.JPG" alt="nojam10815" class="img-responsive" /></p>
+
+<p>내용 자체는 간단합니다. 입력으로 가지고 있는 카드 배열과 들어가 있는지 없는지 구분해야하는 숫자 배열이 주어집니다. 간단히 생각하면 O(N^2)이면 간단히 풀 수 있는 문제입니다. 하지만 이렇게 하면 시간제한을 2초나 줌에도 불구하고 틀리게 됩니다. 그렇다면 더 좋은 알고리즘을 만들어야한다는 것을 알 수 있습니다.</p>
+
+<p>그것은 바로 이분 탐색입니다. 이분 탐색은 O(log(n))의 시간 복잡도를 가지게 됩니다. 어떻게 그럴 수 있을까요?</p>
+
+<h2 id="이분-탐색">이분 탐색</h2>
+
+<ol>
+  <li>
+    <p>이분 탐색을 하고자 하는 배열은 정렬이 되어야합니다.</p>
+  </li>
+  <li>
+    <p>start, end 값으로 mid값을 정해줍니다.</p>
+  </li>
+  <li>
+    <p>mid 값을 찾고 있는 값을 비교합니다.</p>
+  </li>
+  <li>
+    <p>비교할 때 mid 값보다 찾는 값이 높으면 start를 mid+1로 만들고 낮으면 right를 mid-1로 만듭니다.</p>
+  </li>
+  <li>
+    <p>left &gt; right가 될 때까지 계속해서 반복해서 값을 찾습니다.</p>
+  </li>
+</ol>
+
+<p>이 방식을 통해서 시간을 줄일 수 있게 됩니다. 다음이 이 방식을 적용한 풀이 입니다.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">card</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+    <span class="kt">bool</span> <span class="n">flag</span><span class="o">=</span><span class="nb">false</span><span class="p">;</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">card</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">card</span><span class="p">,</span> <span class="n">card</span> <span class="o">+</span> <span class="n">N</span><span class="p">);</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">M</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">shot</span><span class="p">[</span><span class="n">M</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">M</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">shot</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">M</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">start</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">card</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">shot</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
+                <span class="n">shot</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="n">flag</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">card</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">shot</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">end</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="o">+</span><span class="n">start</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">flag</span><span class="p">){</span>
+            <span class="n">shot</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">M</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">shot</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>이상입니다. 감사합니다.</p>
+:ET
