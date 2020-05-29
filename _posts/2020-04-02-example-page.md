@@ -8,6 +8,7 @@ categories: development
 tags: [test,test2]
 github: "https://github.com/sneakstarberry/"
 # noimage: true
+sitemap: true
 ---
 
 hello every one
