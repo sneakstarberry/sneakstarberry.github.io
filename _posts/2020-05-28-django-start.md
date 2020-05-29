@@ -5,7 +5,7 @@ date: 2020-05-27 4:10:00 +0200
 published: 2020-05-28 4:10:00 +0200
 comments: true
 categories: development
-tags: [Python, Django]
+tags: [Python, Django, Web]
 github: "https://github.com/sneakstarberry/"
 noimage: true
 ---
