@@ -70,24 +70,34 @@ STATICFILES_DIRS = (
 #### 위와 같이 파일을 추가해 줍니다.
 ### `index.html`코드 바꾸어 주기
 - #### `index.html`가장 위 첫번째 줄에 다음 코드를 작성해 줍니다.
+{% raw %}
 ```html
 {% load static %}
 ...
 ```
+{% endraw %}
 - #### 그리고 css 가져오기라고 써져있는 글 아래의 코드를 바꾸어 줍니다.
+
 ```html
 ...
 <link rel="stylesheet" href="index.css">
 ...
 ```
+
 #### 위 코드를 다음과 같은 코드로 바꾸어 줍니다.
+
+{% raw %}
 ```html
 ...
 <link rel="stylesheet" href="{% static 'post/css/index.css' %}">
 ...
 ```
-- `static`폴더 아래의 경로를 적어주면 되는 것 입니다.
-- 위 작업을 끝냈다면 서버를 실행 했을 때 다음과 같은 화면이 나올 것 입니다.
+
+{% endraw %}
+- #### `static`폴더 아래의 경로를 적어주면 되는 것 입니다.
+- #### 위 작업을 끝냈다면 서버를 실행 했을 때 다음과 같은 화면이 나올 것 입니다.
 <img src="/assets/images{{page.id}}/result.png" class="img-responsive">
+## 아래 사진과 같이 페이지를 꾸며 보고 내용들을 채우도록 합시다.
+<img src="/assets/images{{page.id}}/result2.png" class="img-responsive">
 
 
