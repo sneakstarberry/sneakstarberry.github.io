@@ -1,0 +1,59 @@
+I"�<p>장고 세션에 따라 자신이 만든 html파일을 메인화면으로 바꿔보기로 하였다.</p>
+
+<!--more-->
+<h1 id="장고-튜토리얼2---템플릿-실행하기">장고 튜토리얼(2) - 템플릿 실행하기</h1>
+<h2 id="작업-폴더-생성">작업 폴더 생성</h2>
+<p><img src="/assets/images/posts/django-template/openfold.png" class="img-responsive" /></p>
+
+<h4 id="위-그림-처럼-네비게이션-바에서-file---open-folder를-합니다-그럼-아래와-같은-창이-나옵니다">위 그림 처럼 네비게이션 바에서 File - Open Folder를 합니다. 그럼 아래와 같은 창이 나옵니다.</h4>
+
+<p><img src="/assets/images/posts/django-template/mkdir.png" class="img-responsive" /></p>
+
+<h4 id="django라는-이름으로-c드라이브에-새폴더를-생성해-줍니다-그리고-해당-폴더를-폴더-선택을-눌러서-선택합니다-이때-폴더에-선택한-폴더이름이-나와-있어야합니다"><code class="highlighter-rouge">django</code>라는 이름으로 C드라이브에 새폴더를 생성해 줍니다. 그리고 해당 폴더를 폴더 선택을 눌러서 선택합니다. 이때 <strong>폴더:</strong>에 선택한 폴더이름이 나와 있어야합니다.</h4>
+<h2 id="가상환경-생성">가상환경 생성</h2>
+<h4 id="그리고-이제-가상환경을-만들어-주겠습니다-ctrl--키를-눌러서-터미널을-작동시켜줍니다-그럼-다음과-같은-화면이-되었을-것-입니다">그리고 이제 가상환경을 만들어 주겠습니다. “ctrl + `“키를 눌러서 터미널을 작동시켜줍니다. 그럼 다음과 같은 화면이 되었을 것 입니다.</h4>
+<p><img src="/assets/images/posts/django-template/terminal.png" class="img-responsive" /></p>
+
+<h4 id="좋습니다-여기서-이제-터미널에-아래-명령어를-입력해-주세요">좋습니다. 여기서 이제 터미널에 아래 명령어를 입력해 주세요.</h4>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> venv myvenv
+</code></pre></div></div>
+<ul>
+  <li>
+    <h5 id="-m은-어떤-것을-만들어-주겠다는-것입니다"><code class="highlighter-rouge">-m</code>은 어떤 것을 만들어 주겠다는 것입니다.</h5>
+  </li>
+  <li>
+    <h5 id="venv는-virtual-environment의-축약어로-가상환경을-의미합니다"><code class="highlighter-rouge">venv</code>는 virtual environment의 축약어로 가상환경을 의미합니다.</h5>
+  </li>
+  <li>
+    <h5 id="myvenv는-저희가-생성하는-가상환경의-이름을-의미합니다-사실상-원하는-이름을-붙이셔도-됩니다"><code class="highlighter-rouge">myvenv</code>는 저희가 생성하는 가상환경의 이름을 의미합니다. 사실상 원하는 이름을 붙이셔도 됩니다.</h5>
+    <p>이 모든 것을 합치면 <code class="highlighter-rouge">myvenv</code>라는 가상환경을 생성해 주겠다는 명령어가 됩니다.</p>
+  </li>
+</ul>
+
+<h4 id="그럼-다음과-같이-폴더가-생깁니다">그럼 다음과 같이 폴더가 생깁니다.</h4>
+<p><img src="/assets/images/posts/django-template/venv.png" class="img-responsive" /></p>
+
+<h4 id="그러면-가상환경을-실행시켜-보겠습니다">그러면 가상환경을 실행시켜 보겠습니다.</h4>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source </span>myvenv/scripts/activate
+</code></pre></div></div>
+<p><img src="/assets/images/posts/django-template/venv_active.png" class="img-responsive" /></p>
+
+<h4 id="그럼-위와-같이-myvenv가-생겼다면-가상환경이-실행이-된-것-입니다">그럼 위와 같이 <code class="highlighter-rouge">(myvenv)</code>가 생겼다면 가상환경이 실행이 된 것 입니다.</h4>
+<h2 id="실습-폴더-깃-클론-받기">실습 폴더 깃 클론 받기</h2>
+
+<h4 id="가상환경을-실행-시켰다면-다시-터미널에-다음-명령어를-입력해-봅니다">가상환경을 실행 시켰다면 다시 터미널에 다음 명령어를 입력해 봅니다.</h4>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/SYULION8TH/django_1st.git
+</code></pre></div></div>
+<h4 id="이-명령어를-입력하면-다음과-같이-될-것-입니다">이 명령어를 입력하면 다음과 같이 될 것 입니다.</h4>
+<p><img src="/assets/images/posts/django-template/clone.png" class="img-responsive" /></p>
+
+<h4 id="그리고-폴더-구조는-다음과-같을-것-입니다">그리고 폴더 구조는 다음과 같을 것 입니다.</h4>
+<p><img src="/assets/images/posts/django-template/clone_dir.png" class="img-responsive" /></p>
+
+<h2 id="패키지-다운-받기">패키지 다운 받기</h2>
+<h4 id="이제-명령어를-통해-장고-와-부가적으로-필요한-패키지를-다운-받아야-합니다-pip-install-django를-통해-장고를-다운-받을-수도-있지만-실습-환경을-동일하게-하기-위해서-만든-requirementstxt를-통해서-pip-install을-진행-하고자-합니다">이제 명령어를 통해 장고 와 부가적으로 필요한 패키지를 다운 받아야 합니다. <code class="highlighter-rouge">pip install django</code>를 통해 장고를 다운 받을 수도 있지만 실습 환경을 동일하게 하기 위해서 만든 requirements.txt를 통해서 <code class="highlighter-rouge">pip install</code>을 진행 하고자 합니다.</h4>
+<h4 id="그렇다면-requirementstxt가-있는-폴더로-이동을-해야-합니다-먼저-터미널에-dir-혹은-ls명령어를-입력합니다">그렇다면 requirements.txt가 있는 폴더로 이동을 해야 합니다. 먼저 터미널에 <code class="highlighter-rouge">dir</code> 혹은 <code class="highlighter-rouge">ls</code>명령어를 입력합니다.</h4>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">dir</span>
+</code></pre></div></div>
+
+:ET

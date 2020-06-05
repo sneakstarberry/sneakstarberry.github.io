@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "장고의 Static 파일"
+title: "[Django]장고의 Static 파일"
 published: 2020-06-02 02:08:00 +0200
 read_time: true
 comments: true

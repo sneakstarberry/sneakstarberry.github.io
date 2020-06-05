@@ -186,3 +186,7 @@ h3:before {
 		background-color: #12421f;
 	}
 }
+
+pre > code {
+	font-size: 18px;
+}
