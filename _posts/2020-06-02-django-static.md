@@ -89,7 +89,7 @@ STATICFILES_DIRS = (
 {% raw %}
 ```html
 ...
-<link rel="stylesheet" href="{% static 'post/css/index.css' %}">
+<link rel="stylesheet" href="{% static 'posts/css/index.css' %}">
 ...
 ```
 
