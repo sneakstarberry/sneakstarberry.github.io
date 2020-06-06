@@ -39,7 +39,7 @@ from django.db import models
 
 class Post(models.Model):
     title = models.CharField(max_length= 100)
-    body = models.CharField(max_length=1000)
+    body = models.Text()
     img = models.ImageField(upload_to = "posts/image", null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -112,6 +112,66 @@ def home(request):
 3. `{"post":posts[0]}`
     - 딕셔너리 자료형입니다. `post`에 `posts`데이터들 중 첫번째 데이터를 담습니다.
     - 이 코드를 통해서 저희는 html에 모델에 담겨있는 데이터를 이용할 수 있게 됩니다.
+
+### html 내용 대체하기
+`index.html`을 열어보겠습니다.
+<img src="/assets/images{{page.id}}/template.png" class="img-responsive">
+제목을 입력하는 부분 찾아보겠습니다. 대략 82번째 줄부터 post내용이 있는 것 같습니다. 제목, 내용, 만든 날짜, 수정된 날짜를 모델에서 보내준 데이터로 바꿔 보겠습니다.
+<img src="/assets/images{{page.id}}/template_model.png" class="img-responsive">
+<img src="/assets/images{{page.id}}/template_model.png" class="img-responsive">
+
+> 위와 같이 바꾸어주면 됩니다. 이제 코드의 의미를 알아보도록 하겠습니다.
+
+
+- 먼저 html에서 python문법을 쓰기위해서는 \{\{}\} 이렇듯 중괄호가 두번 감싸야합니다.
+- 이를 장고 템플릿 태그라고 합니다.
+- `post`를 이용한 것은 `views.py`에서 딕셔너리 자료형에서 `post`로 템플릿에서 이용하겠다고 선언을 해주었기 때문입니다.
+- `post`는 지금 하나의 포스팅 글 데이터를 담은 변수이고 `post.title`과 같은 형태로 데이터에 접근이 가능합니다.
+
+### `admin.py` 코드 추가
+이제 서버를 한 번 실행해 보겠습니다.
+<img src="/assets/images{{page.id}}/error.png" class="img-responsive">
+놀랍게도 에러가 나는 군요. 당연하겠죠? 아직 우린 어떤 데이터도 안넣었으니까요. 데이터를 넣기 위해 장고의 관리자 기능을 이용하겠습니다. `posts`폴더 안에 `admin.py`파일을 열어줍니다.
+```python
+from django.contrib import admin
+
+# Register your models here.
+```
+위와 같은 코드가 있을 것 입니다.
+주석 아래 코드를 추가해 줍니다.
+```python
+from .models import Post
+
+admin.site.register(Post)
+```
+- 우리는 관리자 사이트에 `Post`모델을 관리할 수 있도록 등록해주었습니다.
+
+### 관리자 계정 생성
+관리자 사이트에 들어가기 위해서는 당연히 관리자 계정이 필요합니다. 터미널에 다음 명령어를 입력합니다.
+```shell
+python manage.py createsuperuser
+```
+아래와 같이 `Username`, `Email`, `Password`를 입력해야합니다. `Username`은 `dev`로 지어주었고 `Email`은 `enter`를 눌러서 그냥 패스 해주었습니다. `Password`는 12345로 하였습니다. `Password`는 입력을 해도 눈에 띄는 변화는 없기 때문에 그냥 입력이 잘 되고 있겠거니 하고 12345 입력하고 `enter`눌러주시면 됩니다.
+<img src="/assets/images{{page.id}}/superuser.png" class="img-responsive">
+그렇게 재확인 까지 끝내면 비밀번호가 너무 짧은데 괜찮냐고 합니다. 그냥 `y`를 입력하여 괜찮다고 확인해 줍니다.
+그럼 성공적으로 관리자 계정을 생성한 것입니다.
+
+### 관리자 페이지 이용
+`python manage.py runserver`를 입력하여 서버를 실행 시켜줍니다. 브라우저 창에서 `127.0.0.1:8000`에 `/admin`을 더해서 관리자 페이지로 이동해 줍니다.
+<img src="/assets/images{{page.id}}/admin.png" class="img-responsive">
+유저 네임과 비밀번호를 입력해 줍니다. 이건 기억하시리라고 생각합니다.
+<img src="/assets/images{{page.id}}/admin2.png" class="img-responsive">
+로그인을 하면 위와 같은 페이지가 나옵니다. 여기서 Posts라고 써져있는 곳 옆에 Add를 눌러줍니다.
+<img src="/assets/images{{page.id}}/add.png" class="img-responsive">
+위와 같은 화면이 나오는데 제목과 내용 그리고 적당한 사진을 선택해줍니다. 그리고 `SAVE`버튼을 눌러줍니다.
+<img src="/assets/images{{page.id}}/add_post.png" class="img-responsive">
+저는 중간에 실수로 스샷을 안찍고 저장을 해서 지우고 다시 만들어서 `Post object (2)`지만 여러분들은 `Post object (1)`일 겁니다.
+<img src="/assets/images{{page.id}}/object.png" class="img-responsive">
+이제 포스팅도 끝났습니다. 이제 다시 `http://127.0.0.1:8000` 메인 페이지를 확인하겠습니다.
+<img src="/assets/images{{page.id}}/posting.png" class="img-responsive">
+내용이 멋지게 채워졌습니다.
+
+
 
 
 
