@@ -47,10 +47,17 @@ class Post(models.Model):
 - 저희는 위 코드로 장고에서 쓰일 데이터의 구조를 정해준 것입니다. 
 - Post는 포스팅 글 하나를 말합니다.
 - 저희는 포스팅 글(Post)이 제목(title), 내용(body), 사진(img), 글쓴 날짜(created_at), 수정한 날짜(updated_at)으로 이루어져 있다고 정해준 것 입니다.
+> 이러한 클래스를 왜 정해주는 것일까요?
+>클래스에 정의해서 Post라는 하나의 형식을 거푸집 처럼 찍어내기 위함입니다.
+> <img src="/assets/images{{page.id}}/model.png" class="img-responsive">
+
 
 ## 마이그레이션 하기
 ### 설명
     모델에 하나의 class를 추가해 주었다면 마이그레이션이라는 것을 해주어야 합니다. 위의 그림을 보면 모델과 DB가 서로 통신을 하고 있는데 마이그레이션을 하기전에는 이 둘의 데이터가 같지 않은 상태입니다. 마이그레이션을 하면 모델에 쓰인 코드가 DB에도 적용이 되게 됩니다.
+
+
+<img src="/assets/images{{page.id}}/migrate_img.png" class="img-responsive">
 
 
 ### 실습

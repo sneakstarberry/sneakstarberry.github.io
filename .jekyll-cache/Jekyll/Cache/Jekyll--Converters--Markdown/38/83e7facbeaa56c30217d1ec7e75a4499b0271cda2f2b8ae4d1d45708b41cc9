@@ -1,0 +1,36 @@
+I"6<p>장고 세션에 따라 Media 파일을 이용해보기로 한다.</p>
+
+<!--more-->
+<h1 id="장고-튜토리얼5---media-파일">장고 튜토리얼(5) - Media 파일</h1>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발과정에서 미리 준비되는 `static`과는 달리, 업로드 기능을 통해 프로젝트에 업로드 되는 파일
+</code></pre></div></div>
+
+<p><img src="/assets/images/posts/django-media/media.png" class="img-responsive" /></p>
+
+<h2 id="static--media">Static &amp; Media</h2>
+<ul>
+  <li>
+    <h4 id="파일을-알아내기-위해서">파일을 알아내기 위해서</h4>
+    <ul>
+      <li>Static: 프로젝트 외부와 통신 하지 않음</li>
+      <li>Media: 프로젝트 외부와 통신을 통해 파일을 얻음</li>
+    </ul>
+  </li>
+  <li>
+    <h4 id="장고-프로젝트는-외부와-url을-통해서-통신한다">장고 프로젝트는 외부와 URL을 통해서 통신한다.</h4>
+  </li>
+  <li>
+    <h4 id="따라서-외부-업로드-기능-media-파일을-사용하기-위해서는-settingspy에-다음과-같은-설정을-해야한다">따라서 외부 업로드 기능 (Media 파일)을 사용하기 위해서는 <code class="highlighter-rouge">settings.py</code>에 다음과 같은 설정을 해야한다.</h4>
+    <ul>
+      <li>내부 디렉토리 경로: 업로드될 파일을 저장할 장소</li>
+      <li>URL: 외부와의 통신 수단</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="media의-설정-과정">Media의 설정 과정</h2>
+<ol>
+  <li><code class="highlighter-rouge">settings.py</code>에 <code class="highlighter-rouge">media</code> 파일 설정 (디렉토리, <code class="highlighter-rouge">url</code>설정)</li>
+  <li><code class="highlighter-rouge">urls.py</code>에서 <code class="highlighter-rouge">path</code> 설정</li>
+</ol>
+:ET

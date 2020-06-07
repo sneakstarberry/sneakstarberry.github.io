@@ -68,11 +68,12 @@ STATICFILES_DIRS = (
 #### 이제 `css`폴더에 `index.css`를 복사 붙여넣기를 해줍니다.
 <img src="/assets/images{{page.id}}/css.png" class="img-responsive">
 #### 위와 같이 파일을 추가해 줍니다.
+#### 이제 터미널에 `python manage.py collectstatic`을 해줍니다. `staticfiles`라는 폴더에 모든 `static`파일들이 모이게 될 것입니다.
 ### `index.html`코드 바꾸어 주기
 - #### `index.html`가장 위 첫번째 줄에 다음 코드를 작성해 줍니다.
 {% raw %}
 ```html
-{% load static %}
+{% load static from static %}
 ...
 ```
 {% endraw %}

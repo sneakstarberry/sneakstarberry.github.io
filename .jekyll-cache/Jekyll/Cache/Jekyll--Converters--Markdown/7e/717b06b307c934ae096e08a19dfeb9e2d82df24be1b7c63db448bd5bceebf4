@@ -1,4 +1,4 @@
-I"	<<p>장고 세션에 따라 모델을 이용하여 html안에 포스트 내용을 대체해보기로 한다.</p>
+I"D<p>장고 세션에 따라 모델을 이용하여 html안에 포스트 내용을 대체해보기로 한다.</p>
 
 <!--more-->
 <h1 id="장고-튜토리얼4---모델-사용하기">장고 튜토리얼(4) - 모델 사용하기</h1>
@@ -29,7 +29,7 @@
 </span>
 <span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="n">body</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">Text</span><span class="p">()</span>
     <span class="n">img</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">ImageField</span><span class="p">(</span><span class="n">upload_to</span> <span class="o">=</span> <span class="s">"posts/image"</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">created_at</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">updated_at</span> <span class="o">=</span> <span class="n">models</span><span class="p">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -37,13 +37,21 @@
 <ul>
   <li>저희는 위 코드로 장고에서 쓰일 데이터의 구조를 정해준 것입니다.</li>
   <li>Post는 포스팅 글 하나를 말합니다.</li>
-  <li>저희는 포스팅 글(Post)이 제목(title), 내용(body), 사진(img), 글쓴 날짜(created_at), 수정한 날짜(updated_at)으로 이루어져 있다고 정해준 것 입니다.</li>
+  <li>저희는 포스팅 글(Post)이 제목(title), 내용(body), 사진(img), 글쓴 날짜(created_at), 수정한 날짜(updated_at)으로 이루어져 있다고 정해준 것 입니다.
+    <blockquote>
+      <p>이러한 클래스를 왜 정해주는 것일까요?
+클래스에 정의해서 Post라는 하나의 형식을 거푸집 처럼 찍어내기 위함입니다.
+<img src="/assets/images/posts/django-model/model.png" class="img-responsive" /></p>
+    </blockquote>
+  </li>
 </ul>
 
 <h2 id="마이그레이션-하기">마이그레이션 하기</h2>
 <h3 id="설명">설명</h3>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>모델에 하나의 class를 추가해 주었다면 마이그레이션이라는 것을 해주어야 합니다. 위의 그림을 보면 모델과 DB가 서로 통신을 하고 있는데 마이그레이션을 하기전에는 이 둘의 데이터가 같지 않은 상태입니다. 마이그레이션을 하면 모델에 쓰인 코드가 DB에도 적용이 되게 됩니다.
 </code></pre></div></div>
+
+<p><img src="/assets/images/posts/django-model/migrate_img.png" class="img-responsive" /></p>
 
 <h3 id="실습">실습</h3>
 <p>터미널에 다음과 같이 명령어를 작성해 줍니다.</p>
@@ -130,8 +138,8 @@
 
 <h3 id="adminpy-코드-추가"><code class="highlighter-rouge">admin.py</code> 코드 추가</h3>
 <p>이제 서버를 한 번 실행해 보겠습니다.
-<img src="/assets/images/posts/django-model/page.png" class="img-responsive" />
-놀랍게도 어떤 것도 써져있지 않군요. 당연하겠죠? 아직 우린 어떤 데이터도 안넣었으니까요. 데이터를 넣기 위해 장고의 관리자 기능을 이용하겠습니다. <code class="highlighter-rouge">posts</code>폴더 안에 <code class="highlighter-rouge">admin.py</code>파일을 열어줍니다.</p>
+<img src="/assets/images/posts/django-model/error.png" class="img-responsive" />
+놀랍게도 에러가 나는 군요. 당연하겠죠? 아직 우린 어떤 데이터도 안넣었으니까요. 데이터를 넣기 위해 장고의 관리자 기능을 이용하겠습니다. <code class="highlighter-rouge">posts</code>폴더 안에 <code class="highlighter-rouge">admin.py</code>파일을 열어줍니다.</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 
 <span class="c1"># Register your models here.
@@ -152,6 +160,22 @@
 </code></pre></div></div>
 <p>아래와 같이 <code class="highlighter-rouge">Username</code>, <code class="highlighter-rouge">Email</code>, <code class="highlighter-rouge">Password</code>를 입력해야합니다. <code class="highlighter-rouge">Username</code>은 <code class="highlighter-rouge">dev</code>로 지어주었고 <code class="highlighter-rouge">Email</code>은 <code class="highlighter-rouge">enter</code>를 눌러서 그냥 패스 해주었습니다. <code class="highlighter-rouge">Password</code>는 12345로 하였습니다. <code class="highlighter-rouge">Password</code>는 입력을 해도 눈에 띄는 변화는 없기 때문에 그냥 입력이 잘 되고 있겠거니 하고 12345 입력하고 <code class="highlighter-rouge">enter</code>눌러주시면 됩니다.
 <img src="/assets/images/posts/django-model/superuser.png" class="img-responsive" />
-그렇게 재확인 까지 끝내면 비밀번호가 너무 짧은데 괜찮냐고 합니다. 그냥 <code class="highlighter-rouge">y</code>를 입력하여 괜찮다고 확인해 줍니다.</p>
+그렇게 재확인 까지 끝내면 비밀번호가 너무 짧은데 괜찮냐고 합니다. 그냥 <code class="highlighter-rouge">y</code>를 입력하여 괜찮다고 확인해 줍니다.
+그럼 성공적으로 관리자 계정을 생성한 것입니다.</p>
+
+<h3 id="관리자-페이지-이용">관리자 페이지 이용</h3>
+<p><code class="highlighter-rouge">python manage.py runserver</code>를 입력하여 서버를 실행 시켜줍니다. 브라우저 창에서 <code class="highlighter-rouge">127.0.0.1:8000</code>에 <code class="highlighter-rouge">/admin</code>을 더해서 관리자 페이지로 이동해 줍니다.
+<img src="/assets/images/posts/django-model/admin.png" class="img-responsive" />
+유저 네임과 비밀번호를 입력해 줍니다. 이건 기억하시리라고 생각합니다.
+<img src="/assets/images/posts/django-model/admin2.png" class="img-responsive" />
+로그인을 하면 위와 같은 페이지가 나옵니다. 여기서 Posts라고 써져있는 곳 옆에 Add를 눌러줍니다.
+<img src="/assets/images/posts/django-model/add.png" class="img-responsive" />
+위와 같은 화면이 나오는데 제목과 내용 그리고 적당한 사진을 선택해줍니다. 그리고 <code class="highlighter-rouge">SAVE</code>버튼을 눌러줍니다.
+<img src="/assets/images/posts/django-model/add_post.png" class="img-responsive" />
+저는 중간에 실수로 스샷을 안찍고 저장을 해서 지우고 다시 만들어서 <code class="highlighter-rouge">Post object (2)</code>지만 여러분들은 <code class="highlighter-rouge">Post object (1)</code>일 겁니다.
+<img src="/assets/images/posts/django-model/object.png" class="img-responsive" />
+이제 포스팅도 끝났습니다. 이제 다시 <code class="highlighter-rouge">http://127.0.0.1:8000</code> 메인 페이지를 확인하겠습니다.
+<img src="/assets/images/posts/django-model/posting.png" class="img-responsive" />
+내용이 멋지게 채워졌습니다.</p>
 
 :ET

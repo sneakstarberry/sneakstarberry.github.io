@@ -1,0 +1,71 @@
+I"|<p>장고 세션에 따라 Media 파일을 이용해보기로 한다.</p>
+
+<!--more-->
+<h1 id="장고-튜토리얼5---media-파일">장고 튜토리얼(5) - Media 파일</h1>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발과정에서 미리 준비되는 `static`과는 달리, 업로드 기능을 통해 프로젝트에 업로드 되는 파일
+</code></pre></div></div>
+
+<p><img src="/assets/images/posts/django-media/media.png" class="img-responsive" /></p>
+
+<h2 id="static--media">Static &amp; Media</h2>
+<ul>
+  <li>
+    <h4 id="파일을-알아내기-위해서">파일을 알아내기 위해서</h4>
+    <ul>
+      <li>Static: 프로젝트 외부와 통신 하지 않음</li>
+      <li>Media: 프로젝트 외부와 통신을 통해 파일을 얻음</li>
+    </ul>
+  </li>
+  <li>
+    <h4 id="장고-프로젝트는-외부와-url을-통해서-통신한다">장고 프로젝트는 외부와 URL을 통해서 통신한다.</h4>
+  </li>
+  <li>
+    <h4 id="따라서-외부-업로드-기능-media-파일을-사용하기-위해서는-settingspy에-다음과-같은-설정을-해야한다">따라서 외부 업로드 기능 (Media 파일)을 사용하기 위해서는 <code class="highlighter-rouge">settings.py</code>에 다음과 같은 설정을 해야한다.</h4>
+    <ul>
+      <li>내부 디렉토리 경로: 업로드될 파일을 저장할 장소</li>
+      <li>URL: 외부와의 통신 수단</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="media의-설정-과정">Media의 설정 과정</h2>
+<ol>
+  <li><code class="highlighter-rouge">settings.py</code>에 <code class="highlighter-rouge">media</code> 파일 설정 (디렉토리, <code class="highlighter-rouge">url</code>설정)</li>
+  <li><code class="highlighter-rouge">urls.py</code>에서 <code class="highlighter-rouge">path</code> 설정</li>
+</ol>
+
+<h2 id="media-설정-하기실습">Media 설정 하기(실습)</h2>
+
+<h3 id="settingspy에-media파일의-저장폴더와-url-경로-설계"><code class="highlighter-rouge">settings.py</code>에 <code class="highlighter-rouge">media</code>파일의 저장폴더와 <code class="highlighter-rouge">url</code> 경로 설계</h3>
+<p><code class="highlighter-rouge">settings.py</code>맨 아래에 다음과 같은 코드를 추가해 줍니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s">'media'</span><span class="p">)</span>
+<span class="c1"># media파일들이 내부에 어디로 모일 것 인지 알려줌
+</span>
+<span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s">'/media/'</span>
+<span class="c1"># 홈페이지/media/filename 과 같이 url이 설계됩니다.
+</span></code></pre></div></div>
+
+<h3 id="url설정urlspy-에서-path-추가">URL설정(`urls.py 에서 path 추가)</h3>
+<p>blog 폴더 아래에 있는 <code class="highlighter-rouge">urls.py</code>에 들어가 줍니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">import</span> <span class="nn">posts.views</span>
+</code></pre></div></div>
+<p>아래에 다음 코드를 추가해 줍니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">django.conf.urls.static</span> <span class="kn">import</span> <span class="n">static</span>
+</code></pre></div></div>
+<p>그리고</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s">'admin/'</span><span class="p">,</span> <span class="n">admin</span><span class="p">.</span><span class="n">site</span><span class="p">.</span><span class="n">urls</span><span class="p">),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">posts</span><span class="p">.</span><span class="n">views</span><span class="p">.</span><span class="n">home</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">"home"</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div></div>
+<p>위 코드 아래에 다음 코드를 추가해 줍니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">static</span><span class="p">(</span><span class="n">settings</span><span class="p">.</span><span class="n">MEDIA_URL</span><span class="p">,</span> <span class="n">document_root</span><span class="o">=</span><span class="n">settings</span><span class="p">.</span><span class="n">MEDIA_ROOT</span><span class="p">)</span>
+<span class="c1"># 각각의 media 파일마다 url경로를 생성시켜준다.
+</span></code></pre></div></div>
+
+<h3 id="admin-페이지에서-사진-업로드">admin 페이지에서 사진 업로드</h3>
+<p>이전에 접속 했었던 admin 페이지로 이동합니다. <code class="highlighter-rouge">http://127.0.0.1:8000/admin</code>으로 이동을 하고 로그인을 요구하면 username: dev, password: 12345를 입력하고 로그인을 합니다.</p>
+:ET
