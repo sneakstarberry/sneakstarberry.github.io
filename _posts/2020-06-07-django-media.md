@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "[Django]장고튜토리얼(5) - Media 파일"
-published: 2020-06-06 19:30:00 +0200
+published: 2020-06-07 19:30:00 +0200
 read_time: true
 comments: true
 categories: development
