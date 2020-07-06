@@ -1,0 +1,54 @@
+I"�<p>장고 세션에 따라 포스트 리스트를 출력 해보기로 한다.</p>
+
+<!--more-->
+
+<h1 id="장고-튜토리얼5---리스트-페이지네이션">장고 튜토리얼(5) - 리스트, 페이지네이션</h1>
+<h2 id="리스트-페이지-html을-만들기">리스트 페이지 html을 만들기</h2>
+<h3 id="templatesblog-아래의-indexhtml을-ctrlc-그리고-ctrlv를-해주어서-index-copyhtml을-만들어-줍니다"><code class="highlighter-rouge">templates/blog</code> 아래의 <code class="highlighter-rouge">index.html</code>을 <code class="highlighter-rouge">ctrl+c</code> 그리고 <code class="highlighter-rouge">ctrl+v</code>를 해주어서 <code class="highlighter-rouge">index copy.html</code>을 만들어 줍니다.</h3>
+<p><img src="/assets/images/posts/django6-list/copy.png" class="img-responsive" /></p>
+
+<h3 id="이후-indexhtml을-더블-클릭해서-파일을-열어줍니다-그리고-아래-사진의-내용으로-가줍니다">이후 <code class="highlighter-rouge">index.html</code>을 더블 클릭해서 파일을 열어줍니다. 그리고 아래 사진의 내용으로 가줍니다.</h3>
+<p><img src="/assets/images/posts/django6-list/swap.png" class="img-responsive" /></p>
+
+<h3 id="이제-빨간-네모-사이의-내용을-바꿀-겁니다-주의-네모-바깥의-div요소는-바꾸지-마시오">이제 빨간 네모 사이의 내용을 바꿀 겁니다. <br />※주의※ 네모 바깥의 <code class="highlighter-rouge">&lt;div&gt;</code>요소는 바꾸지 마시오.</h3>
+<p><img src="/assets/images/posts/django6-list/swap2.png" class="img-responsive" /></p>
+
+<h4 id="다음-코드로-내용을-바꿉니다">다음 코드로 내용을 바꿉니다.</h4>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div&gt;</span>
+    {% for post in posts %}
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card mb-3"</span> <span class="na">style=</span><span class="s">"max-width: 540px;"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row no-gutters"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"{{ post.img.url }}"</span> <span class="na">class=</span><span class="s">"card-img"</span> <span class="na">alt=</span><span class="s">"..."</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-8"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h5</span> <span class="na">class=</span><span class="s">"card-title"</span><span class="nt">&gt;</span>{{ post.title }}<span class="nt">&lt;/h5&gt;</span>
+            <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"card-text"</span><span class="nt">&gt;</span>{{post.summary}}<span class="nt">&lt;/p&gt;</span>
+            <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"card-text"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;small</span> <span class="na">class=</span><span class="s">"text-muted"</span><span class="nt">&gt;</span>Created at: {{ post.created_at }}<span class="nt">&lt;/small&gt;&lt;br/&gt;</span>
+                <span class="nt">&lt;small</span> <span class="na">class=</span><span class="s">"text-muted"</span><span class="nt">&gt;</span>Updated at: {{ post.updated_at }}<span class="nt">&lt;/small&gt;</span>
+            <span class="nt">&lt;/p&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    {% endfor %}
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+<h5 id="1---이-부분은-장고의-템플릿-태그-선언-부분입니다">1. <code class="highlighter-rouge">{% %}</code> 이 부분은 장고의 템플릿 태그 선언 부분입니다.</h5>
+<h5 id="2-템플릿-태그-안에는-파이썬-코드를-넣을-수-있습니다-for-post-in-posts는-파이썬에서-for문-형식과-같습니다">2. 템플릿 태그 안에는 파이썬 코드를 넣을 수 있습니다. <code class="highlighter-rouge">for post in posts</code>는 파이썬에서 for문 형식과 같습니다.</h5>
+<h5 id="3-html에서는-파이썬-코드가-언제-끝나는지-모르기-때문에-endfor를-이용하여-for문이-끝났다는-것을-알려줍니다">3. html에서는 파이썬 코드가 언제 끝나는지 모르기 때문에 <code class="highlighter-rouge">endfor</code>를 이용하여 <code class="highlighter-rouge">for문</code>이 끝났다는 것을 알려줍니다.</h5>
+<blockquote>
+  <p>템플릿 태그란?</p>
+  <blockquote>
+    <p>HTML에 여러분은 파이썬 코드를 바로 넣을 수 없어요. 브라우져는 파이썬 코드를 이해할 수 없기 때문이에요. 브라우저는 HTML만을 알고 있어요. 알다시피 HTML는 정적이지만, 파이썬은 동적입니다.</p>
+  </blockquote>
+</blockquote>
+
+<p>템플릿 태그는 파이썬을 HTML로 바꿔주어, 빠르고 쉽게 동적인 웹 사이트를 만들 수 있게 도와주어요.</p>
+<h4 id="이때-서버를-실행-시켜-보면-빈-공간만을-볼-수-있을-겁니다">이때 서버를 실행 시켜 보면 빈 공간만을 볼 수 있을 겁니다.</h4>
+<p><img src="/assets/images/posts/django6-list/empty.png" class="img-responsive" /></p>
+<h5 id="viewspy에서-제대로된-데이터를-안넘겨주기-때문입니다-안-고쳐주었기-때문입니다"><code class="highlighter-rouge">views.py</code>에서 제대로된 데이터를 안넘겨주기 때문입니다. 안 고쳐주었기 때문입니다.</h5>
+
+:ET

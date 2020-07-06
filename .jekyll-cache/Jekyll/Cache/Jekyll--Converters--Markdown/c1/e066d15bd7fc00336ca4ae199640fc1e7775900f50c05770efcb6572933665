@@ -1,9 +1,0 @@
-I"�<p>장고 세션에 따라 Media 파일을 이용해보기로 한다.</p>
-
-<!--more-->
-<h1 id="장고-튜토리얼5---media-파일">장고 튜토리얼(5) - Media 파일</h1>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발과정에서 미리 준비되는 `static`과는 달리, 업로드 기능을 통해 프로젝트에 업로드 되는 파일
-</code></pre></div></div>
-
-<p><img src="/assets/images/posts/django-media/media.png" class="img-responsive" /></p>
-:ET
