@@ -57,7 +57,7 @@ def home(request):
     <span class="step-links">
     {% if posts.has_previous %}
     <a href="?page=1">&laquo; first</a>
-    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    <a href="?page={{ posts.previous_page_number }}">previous</a>
     {% endif %}
     <span class="current">
         Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
