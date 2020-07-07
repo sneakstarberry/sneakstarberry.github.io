@@ -27,7 +27,9 @@ noimage: true
 #### 다음 코드로 내용을 바꿉니다.
 ```html
 {% raw %}<div>
+    <!-- for문 템플릿 태그 -->
     {% for post in posts %}
+    <!-- 카드 요소 시작 -->
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row no-gutters">
         <div class="col-md-4">
@@ -45,6 +47,7 @@ noimage: true
         </div>
         </div>
     </div>
+    <!-- 템플릿 태그를 끝내는 태그 -->
     {% endfor %}
 </div>{% endraw %}
 ```

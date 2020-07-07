@@ -1,0 +1,42 @@
+I"4<p>장고 세션에 따라 포스트 리스트를 페이지네이션 해보기로 한다.</p>
+
+<!--more-->
+
+<h1 id="장고-튜토리얼7---페이지네이션">장고 튜토리얼(7) - 페이지네이션</h1>
+<h4 id="장고-페이지-네이션을-이용해보겠습니다">장고 페이지 네이션을 이용해보겠습니다.</h4>
+<blockquote>
+  <p>페이지네이션이란?</p>
+  <blockquote>
+    <p>페이지네이션은 리스트를 일정 갯수에 따라 페이지를 나누는 것을 의미한다.</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="viewspy-코드-변경"><code class="highlighter-rouge">views.py</code> 코드 변경</h2>
+<h3 id="앱의-viewspy-파일을-열어-줍니다-그렇다면-코드는-다음과-같을-것-입니다">앱의 <code class="highlighter-rouge">views.py</code> 파일을 열어 줍니다. 그렇다면 코드는 다음과 같을 것 입니다.</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Post</span>
+<span class="c1"># Create your views here.
+</span><span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">posts</span> <span class="o">=</span> <span class="n">Post</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">"posts/index.html"</span><span class="p">,</span> <span class="p">{</span><span class="s">"posts"</span><span class="p">:</span><span class="n">posts</span><span class="p">})</span>
+</code></pre></div></div>
+
+<h4 id="코드를-바꾸어줄-것-입니다">코드를 바꾸어줄 것 입니다.</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Post</span>
+<span class="kn">from</span> <span class="nn">django.core.paginator</span> <span class="kn">import</span> <span class="n">Paginator</span> <span class="c1"># 추가된 코드
+# Create your views here.                   # 장고 내장 페이지네이션 기능을 가져온다.
+</span><span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">posts</span> <span class="o">=</span> <span class="n">Post</span><span class="p">.</span><span class="n">objects</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>
+
+    <span class="n">paginator</span> <span class="o">=</span> <span class="n">Paginator</span><span class="p">(</span><span class="n">posts</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># 페이지네이터 함수 사용
+</span>
+    <span class="n">page_number</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">GET</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"page"</span><span class="p">)</span> <span class="c1"># 페이지 넘버 가져오기
+</span>    <span class="n">page_posts</span> <span class="o">=</span> <span class="n">paginator</span><span class="p">.</span><span class="n">get_page</span><span class="p">(</span><span class="n">page_number</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">"posts/index.html"</span><span class="p">,</span> <span class="p">{</span><span class="s">"posts"</span><span class="p">:</span><span class="n">page_posts</span><span class="p">})</span> <span class="c1"># 페이지네이션 변수 page_posts를 템플릿의 posts로 받기
+</span></code></pre></div></div>
+<p>####</p>
+
+:ET
