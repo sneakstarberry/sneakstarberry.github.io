@@ -1,0 +1,93 @@
+I"<p>다트 변수 선언하기</p>
+
+<!--more-->
+
+<h1 id="다트1---변수-선언">다트(1) - 변수 선언</h1>
+<h2 id="다트는-기본적으로-타입-추정이-되는-언어입니다">다트는 기본적으로 타입 추정이 되는 언어입니다.</h2>
+<blockquote>
+  <p>타입추정 이란?</p>
+
+  <blockquote>
+    <p>타입을 명시하지 않아도 컴파일이 되는 동안 타입을 추정해서 변수의 타입을 정하는 것.</p>
+  </blockquote>
+</blockquote>
+
+<h4 id="변수-선언">변수 선언</h4>
+<p>타입 추정을 이용한 변수 선언이 있고 타입을 명시해서 변수를 선언해 주는 방법이 있습니다.</p>
+<h3 id="타입-추정을-이용한-변수-선언">타입 추정을 이용한 변수 선언</h3>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">main</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">var</span> <span class="n">name</span> <span class="o">=</span> <span class="s">'sneakstarberry'</span><span class="o">;</span>
+    <span class="c1">// or</span>
+    <span class="kd">dynamic</span> <span class="n">name2</span> <span class="o">=</span> <span class="s">'sneakstarberry2'</span><span class="o">;</span>
+    
+    <span class="n">print</span><span class="o">(</span><span class="n">name</span><span class="o">);</span> <span class="c1">// sneakstarberry</span>
+    <span class="n">print</span><span class="o">(</span><span class="n">name2</span><span class="o">);</span> <span class="c1">// sneakstarberry2</span>
+    <span class="c1">// name의 타입은 자동으로 String이 된다.</span>
+    <span class="n">print</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">runtimeType</span><span class="o">);</span> <span class="c1">// String</span>
+    <span class="n">print</span><span class="o">(</span><span class="n">name2</span><span class="o">.</span><span class="na">runtimeType</span><span class="o">);</span> <span class="c1">// String</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">var</code>과 <code class="highlighter-rouge">dynamic</code>의 차이는 <code class="highlighter-rouge">var</code>은 타입 세이프가 되고 <code class="highlighter-rouge">dynamic</code>은 타입 세이프가 되지 않는다.</p>
+
+<blockquote>
+  <p>타입 세이프란?</p>
+
+  <blockquote>
+    <p>타입 추정으로 정해진 타입을 중간에 바꿀 수 없도록 하는 것</p>
+  </blockquote>
+</blockquote>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">main</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">var</span> <span class="n">name</span> <span class="o">=</span> <span class="s">'sneakstarberry'</span><span class="o">;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 오류 코드</span>
+    
+    <span class="kd">dynamic</span> <span class="n">name2</span> <span class="o">=</span> <span class="s">'sneakstarberry'</span><span class="o">;</span>
+    <span class="n">name2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 오류가 나지 않는다.</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="타입을-명시한-변수-선언">타입을 명시한 변수 선언</h3>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">main</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">'sneakstarberry'</span><span class="o">;</span>
+    
+    <span class="n">print</span><span class="o">(</span><span class="n">name</span><span class="o">);</span> <span class="c1">// sneakstarberry</span>
+    <span class="n">print</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">runtimeType</span><span class="o">);</span> <span class="c1">// String</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p><br /></p>
+<h4 id="기본-타입들자주-쓰이는-타입">기본 타입들(자주 쓰이는 타입)</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>타입</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>num</td>
+      <td>int 가 될 수 있고 double이 될 수 있는 숫자 타입</td>
+    </tr>
+    <tr>
+      <td>int</td>
+      <td>정수 타입</td>
+    </tr>
+    <tr>
+      <td>double</td>
+      <td>실수 타입</td>
+    </tr>
+    <tr>
+      <td>String</td>
+      <td>문자열</td>
+    </tr>
+    <tr>
+      <td>bool</td>
+      <td>참/거짓이 나오는 boolean 타입</td>
+    </tr>
+  </tbody>
+</table>
+
+:ET

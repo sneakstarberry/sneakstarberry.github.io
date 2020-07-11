@@ -1,0 +1,46 @@
+I"�<p>다트 변수 선언하기</p>
+
+<!--more-->
+
+<h1 id="다트1---변수-선언">다트(1) - 변수 선언</h1>
+<h2 id="다트는-기본적으로-타입-추정이-되는-언어입니다">다트는 기본적으로 타입 추정이 되는 언어입니다.</h2>
+<blockquote>
+  <p>타입추정 이란?</p>
+  <blockquote>
+    <p>타입을 명시하지 않아도 컴파일이 되는 동안 타입을 추정해서 변수의 타입을 정하는 것.</p>
+  </blockquote>
+</blockquote>
+
+<h3 id="변수-선언">변수 선언</h3>
+<p>타입 추정을 이용한 변수 선언이 있고 타입을 명시해서 변수를 선언해 주는 방법이 있습니다.</p>
+<h4 id="타입-추정을-이용한-변수-선언">타입 추정을 이용한 변수 선언</h4>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">main</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">var</span> <span class="n">name</span> <span class="o">=</span> <span class="s">'sneakstarberry'</span><span class="o">;</span>
+    <span class="c1">// or</span>
+    <span class="kd">dynamic</span> <span class="n">name2</span> <span class="o">=</span> <span class="s">'sneakstarberry2'</span><span class="o">;</span>
+    
+    <span class="n">print</span><span class="o">(</span><span class="n">name</span><span class="o">);</span> <span class="c1">// sneakstarberry</span>
+    <span class="n">print</span><span class="o">(</span><span class="n">name2</span><span class="o">);</span> <span class="c1">// sneakstarberry2</span>
+    <span class="c1">// name의 타입은 자동으로 String이 된다.</span>
+    <span class="n">print</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">runtimeType</span><span class="o">);</span> <span class="c1">// String</span>
+    <span class="n">print</span><span class="o">(</span><span class="n">name2</span><span class="o">.</span><span class="na">runtimeType</span><span class="o">);</span> <span class="c1">// String</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="타입을-명시한-변수-선언">타입을 명시한 변수 선언</h4>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">main</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">'sneakstarberry'</span><span class="o">;</span>
+    
+    <span class="n">print</span><span class="o">(</span><span class="n">name</span><span class="o">);</span> <span class="c1">// sneakstarberry</span>
+    <span class="n">print</span><span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">runtimeType</span><span class="o">);</span> <span class="c1">// String</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>기본 타입들
+|타입|설명|
+————
+|int| 일반적인 정수|
+|double| 실수</p>
+
+:ET
