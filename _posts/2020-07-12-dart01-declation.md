@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "[Dart]다트(1) - 변수 선언"
-published: 2020-07-07 2:40:00 +0200
+published: 2020-07-12 2:40:00 +0200
 read_time: true
 comments: true
 categories: development

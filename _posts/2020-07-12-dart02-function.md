@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "[Dart]다트(2) - 함수"
-published: 2020-07-07 2:40:00 +0200
+published: 2020-07-12 2:40:00 +0200
 read_time: true
 comments: true
 categories: development
@@ -13,7 +13,7 @@ noimage: true
 
 <!--more-->
 
-# 다트(1) - 함수
+# 다트(2) - 함수
 ## 다트 함수 형식
 - #### 다트는 자바 문법과 유사점이 많고 자바스크립트와도 문법적인 유사점이 있습니다.
 - #### 먼저 일반적인 함수 선언 방법을 보고 이후 Fat Arrow를 통한 함수 선언 방법을 살펴보도록 하겠습니다.
@@ -62,9 +62,9 @@ main() {
     void printer2() => print("Hello World"); // 짧은 식은 중괄호를 생략할 수 있다.
     printer3() => print("Hello World"); // 굳이 타입을 지정해 주지 않아도 된다.
 
-    printer();
-    printer2();
-    printer3();
+    printer(); // Hello World
+    printer2(); // Hello World
+    printer3(); // Hello World
 }
 ```
 

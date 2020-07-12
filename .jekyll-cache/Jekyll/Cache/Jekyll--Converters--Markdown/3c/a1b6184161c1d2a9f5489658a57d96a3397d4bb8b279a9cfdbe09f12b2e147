@@ -1,4 +1,4 @@
-I"R<p>다트 함수</p>
+I"�<p>다트 함수</p>
 
 <!--more-->
 
@@ -52,9 +52,9 @@
     <span class="kt">void</span> <span class="n">printer2</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">print</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">);</span> <span class="c1">// 짧은 식은 중괄호를 생략할 수 있다.</span>
     <span class="n">printer3</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">print</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">);</span> <span class="c1">// 굳이 타입을 지정해 주지 않아도 된다.</span>
 
-    <span class="n">printer</span><span class="o">();</span>
-    <span class="n">printer2</span><span class="o">();</span>
-    <span class="n">printer3</span><span class="o">();</span>
+    <span class="n">printer</span><span class="o">();</span> <span class="c1">// Hello World</span>
+    <span class="n">printer2</span><span class="o">();</span> <span class="c1">// Hello World</span>
+    <span class="n">printer3</span><span class="o">();</span> <span class="c1">// Hello World</span>
 <span class="o">}</span>
 </code></pre></div></div>
 

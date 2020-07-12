@@ -1,0 +1,61 @@
+I"�<p>다트 클래스</p>
+
+<!--more-->
+
+<h1 id="다트4---클래스">다트(4) - 클래스</h1>
+<h4 id="다트에서-클래스를-어떻게-만드는-지-알아보도록-하겠습니다">다트에서 클래스를 어떻게 만드는 지 알아보도록 하겠습니다.</h4>
+<h2 id="클래스-선언">클래스 선언</h2>
+<h3 id="일반적인-클래스-선언">일반적인 클래스 선언</h3>
+<h4 id="일반적으로-클래스를-선언할-때-쓰는-방식입니다">일반적으로 클래스를 선언할 때 쓰는 방식입니다.</h4>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="kt">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h4 id="위와-같이-앞에-class를-붙여서-선언을-해주면-됩니다">위와 같이 앞에 class를 붙여서 선언을 해주면 됩니다.</h4>
+
+<h4 id="객체의-member에-접근하기">객체의 member에 접근하기</h4>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">name</span>
+</code></pre></div></div>
+<p>’.’을 통해 member에 접근할 수 있습니다.</p>
+
+<h3 id="생성자-이용하기">생성자 이용하기</h3>
+<h4 id="생성자를-이용하여-객체를-생성할-때-값을-넣어-줄-수-있습니다">생성자를 이용하여 객체를 생성할 때 값을 넣어 줄 수 있습니다.</h4>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Person</span><span class="o">{</span>
+    <span class="kt">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="n">Person</span><span class="o">(</span><span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h4 id="위와-같이-this를-이용하여-객체의-값에-접근-할-수-있습니다">위와 같이 this를 이용하여 객체의 값에 접근 할 수 있습니다.</h4>
+
+<h3 id="간편하게-생성자를-이용하기">간편하게 생성자를 이용하기</h3>
+<h4 id="좀-더-간편하게-생성자를-이용해보겠습니다">좀 더 간편하게 생성자를 이용해보겠습니다.</h4>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Person</span><span class="o">{</span>
+    <span class="kt">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="n">Person</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="n">main</span><span class="o">(){</span>
+    <span class="n">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="n">Person</span><span class="o">(</span><span class="s">'sneakstarberry'</span><span class="o">);</span>
+    <span class="n">print</span><span class="o">(</span><span class="n">person</span><span class="o">.</span><span class="na">name</span><span class="o">);</span> <span class="c1">// sneakstarberry</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h4 id="함수처럼-생겼던-생성자를-간단하게-바꾸어보았습니다">함수처럼 생겼던 생성자를 간단하게 바꾸어보았습니다.</h4>
+<p><br /></p>
+
+<h4 id="접근이-가능한-member-접근이-불가능한-member">접근이 가능한 member 접근이 불가능한 member</h4>
+<p>객체의 member에 직접적인 접근이 불가능하게 만들고 싶다면 앞에’_‘를 붙이면 됩니다.</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Person</span><span class="o">{</span>
+    <span class="kt">String</span> <span class="n">_name</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="n">main</span><span class="o">(){</span>
+  <span class="n">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="n">Person</span><span class="o">();</span>
+  <span class="n">person</span><span class="o">.</span><span class="na">_name</span> <span class="o">=</span> <span class="s">'person'</span><span class="o">;</span> <span class="c1">//error</span>
+  <span class="n">print</span><span class="o">(</span><span class="n">person</span><span class="o">.</span><span class="na">_name</span><span class="o">);</span> <span class="c1">// error</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+:ET
