@@ -1,0 +1,129 @@
+I"<+<p>다트 클래스</p>
+
+<!--more-->
+
+<h1 id="다트4---클래스">다트(4) - 클래스</h1>
+<h4 id="다트에서-클래스를-어떻게-만드는-지-알아보도록-하겠습니다">다트에서 클래스를 어떻게 만드는 지 알아보도록 하겠습니다.</h4>
+<h2 id="클래스-선언">클래스 선언</h2>
+<h3 id="일반적인-클래스-선언">일반적인 클래스 선언</h3>
+<h4 id="일반적으로-클래스를-선언할-때-쓰는-방식입니다">일반적으로 클래스를 선언할 때 쓰는 방식입니다.</h4>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="kt">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h4 id="위와-같이-앞에-class를-붙여서-선언을-해주면-됩니다">위와 같이 앞에 class를 붙여서 선언을 해주면 됩니다.</h4>
+
+<h4 id="객체의-member에-접근하기">객체의 member에 접근하기</h4>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">name</span>
+</code></pre></div></div>
+<p>’.’을 통해 member에 접근할 수 있습니다.</p>
+
+<h3 id="생성자-이용하기">생성자 이용하기</h3>
+<h4 id="생성자를-이용하여-객체를-생성할-때-값을-넣어-줄-수-있습니다">생성자를 이용하여 객체를 생성할 때 값을 넣어 줄 수 있습니다.</h4>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Person</span><span class="o">{</span>
+    <span class="kt">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="n">Person</span><span class="o">(</span><span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h4 id="위와-같이-this를-이용하여-객체의-값에-접근-할-수-있습니다">위와 같이 this를 이용하여 객체의 값에 접근 할 수 있습니다.</h4>
+
+<h3 id="간편하게-생성자를-이용하기">간편하게 생성자를 이용하기</h3>
+<h4 id="좀-더-간편하게-생성자를-이용해보겠습니다">좀 더 간편하게 생성자를 이용해보겠습니다.</h4>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Person</span><span class="o">{</span>
+    <span class="kt">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="n">Person</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="n">main</span><span class="o">(){</span>
+    <span class="n">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="n">Person</span><span class="o">(</span><span class="s">'sneakstarberry'</span><span class="o">);</span>
+    <span class="n">print</span><span class="o">(</span><span class="n">person</span><span class="o">.</span><span class="na">name</span><span class="o">);</span> <span class="c1">// sneakstarberry</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h4 id="함수처럼-생겼던-생성자를-간단하게-바꾸어보았습니다">함수처럼 생겼던 생성자를 간단하게 바꾸어보았습니다.</h4>
+<p><br /></p>
+
+<h3 id="상속-받기">상속 받기</h3>
+<h4 id="extends-키워드를-이용해-익숙하게-상속받을-수-있다">extends 키워드를 이용해 익숙하게 상속받을 수 있다.</h4>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Vehicle</span><span class="o">{</span>
+  <span class="n">Vehicle</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">color</span><span class="o">);</span>
+  
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">color</span><span class="o">;</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">definition</span> <span class="o">=</span> <span class="s">'Vehicle'</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Car</span> <span class="kd">extends</span> <span class="n">Vehicle</span> <span class="o">{</span>
+  <span class="n">Car</span><span class="o">(</span><span class="kt">String</span> <span class="n">color</span><span class="o">)</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="n">color</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Hatch</span> <span class="kd">extends</span> <span class="n">Car</span> <span class="o">{</span>
+  <span class="n">Hatch</span><span class="o">(</span><span class="kt">String</span> <span class="n">color</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="n">main</span><span class="o">(){</span>
+  <span class="kd">final</span> <span class="n">hatch</span> <span class="o">=</span> <span class="n">Hatch</span><span class="o">(</span><span class="s">'red'</span><span class="o">);</span>
+  
+  <span class="n">print</span><span class="o">(</span><span class="s">'Result: </span><span class="si">${hatch is Vehicle}</span><span class="s">'</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h3 id="implements-하기">implements 하기</h3>
+<ul>
+  <li>
+    <h4 id="implements는-implement하는-클래스의-모든-속성과변수-및-함수를-상속하지-않고-유형만-상속하는-고유한-클래스를-만들-때-사용합니다">implements는 implement하는 클래스의 모든 속성과변수 및 함수를 상속하지 않고 유형만 상속하는 고유한 클래스를 만들 때 사용합니다.</h4>
+  </li>
+  <li>
+    <h4 id="즉-인터페이스를-구현하는-것과-같습니다-car클래스는-vehicle-클래스가-가지고-있는-모든-속성과-함수를-구현해야합니다">즉, 인터페이스를 구현하는 것과 같습니다. Car클래스는 Vehicle 클래스가 가지고 있는 모든 속성과 함수를 구현해야합니다.</h4>
+  </li>
+</ul>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Vehicle</span><span class="o">{</span>
+  <span class="n">Vehicle</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">color</span><span class="o">);</span>
+  
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">color</span><span class="o">;</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">definition</span> <span class="o">=</span> <span class="s">'Vehicle'</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Car</span> <span class="kd">implements</span> <span class="n">Vehicle</span> <span class="o">{</span>
+  <span class="n">Car</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">carColor</span><span class="o">);</span>
+  
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">carColor</span><span class="o">;</span>
+  
+  <span class="nd">@override</span>
+  <span class="kt">String</span> <span class="kd">get</span> <span class="n">color</span> <span class="o">=&gt;</span> <span class="n">carColor</span><span class="o">;</span>
+  <span class="nd">@override</span>
+  <span class="kt">String</span> <span class="kd">get</span> <span class="n">definition</span> <span class="o">=&gt;</span> <span class="s">'</span><span class="si">$carColor</span><span class="s"> car'</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="n">main</span><span class="o">(){</span>
+  <span class="kd">final</span> <span class="n">car</span> <span class="o">=</span> <span class="n">Car</span><span class="o">(</span><span class="s">'red'</span><span class="o">);</span>
+  
+  <span class="n">print</span><span class="o">(</span><span class="s">'Result: </span><span class="si">${car is Vehicle}</span><span class="s">'</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h4 id="car는-vehicle에-있는-모든-속성과-함수를-따로-구현-함으로서-type이-같아졌습니다">Car는 Vehicle에 있는 모든 속성과 함수를 따로 구현 함으로서 type이 같아졌습니다.</h4>
+
+<h3 id="with-쓰기">with 쓰기</h3>
+<h4 id="with를-씀으로서-여러-개의-클래스로-부터-상속을-받을-수-있습니다">with를 씀으로서 여러 개의 클래스로 부터 상속을 받을 수 있습니다.</h4>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Animal</span> <span class="o">{}</span>
+
+<span class="c1">// behaviors</span>
+<span class="kd">class</span> <span class="nc">Flyer</span> <span class="o">{</span>
+  <span class="kt">void</span> <span class="n">fly</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">print</span><span class="o">(</span><span class="s">'I can fly!'</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Swimmer</span> <span class="o">{</span>
+  <span class="kt">void</span> <span class="n">swim</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">print</span><span class="o">(</span><span class="s">'I can swim!'</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Bird</span> <span class="kd">extends</span> <span class="n">Animal</span> <span class="k">with</span> <span class="n">Flyer</span> <span class="o">{}</span>
+
+<span class="kd">class</span> <span class="nc">Duck</span> <span class="kd">extends</span> <span class="n">Animal</span> <span class="k">with</span> <span class="n">Swimmer</span><span class="o">,</span> <span class="n">Flyer</span> <span class="o">{}</span>
+
+<span class="n">main</span><span class="o">(){</span>
+  <span class="kd">final</span> <span class="n">bird</span> <span class="o">=</span> <span class="n">Bird</span><span class="o">();</span>
+  <span class="n">print</span><span class="o">(</span><span class="n">bird</span> <span class="k">is</span> <span class="n">Flyer</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>감사합니다.</p>
+:ET
