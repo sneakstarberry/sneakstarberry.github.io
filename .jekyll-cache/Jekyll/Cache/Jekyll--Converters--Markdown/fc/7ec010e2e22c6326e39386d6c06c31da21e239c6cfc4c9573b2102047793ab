@@ -1,4 +1,4 @@
-I"�<p>[백준] 1912번 연속합
+I"<p>[백준] 1912번 연속합
 <!--more--></p>
 <h1 id="백준-1912번-연속합">[백준] 1912번 연속합</h1>
 
@@ -10,25 +10,25 @@
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dp[n] = dp[n] + dp[n-1]
 </code></pre></div></div>
 <p>해당 값(<code class="highlighter-rouge">dp[n]</code>)의 연속합을 구하기 위해서는 계속해서 이전 값과 현재 값을 더한 값이 현재 값이 되어야합니다. 하지만 이로서는 연속합만 될 뿐 최대 값이 될 수는 없습니다.
- 따라서 최대 값이 되도록 하기 위해서는 조건을 추가해야하는데 2가지를 생각하면 된다.</p>
+ 따라서 최대 값이 되도록 하기 위해서는 조건을 추가해야하는데 2가지를 생각하면 됩니다.</p>
 <ol>
   <li>dp[i-1] &gt; 0
     <blockquote>
       <ul>
-        <li>이전의 합이 음수라면 선택할 필요없이 현재부터 다시 선택하면 된다.</li>
+        <li>이전의 합이 음수라면 선택할 필요없이 현재부터 다시 선택하면 됩니다..</li>
       </ul>
     </blockquote>
   </li>
   <li>dp[i] + dp[i-1] &gt; 0
     <blockquote>
       <ul>
-        <li>이전의 합과 현재의 수를 더한 값이 음수라면 선택할 필요가 없다.</li>
+        <li>이전의 합과 현재의 수를 더한 값이 음수라면 선택할 필요가 없습니다..</li>
       </ul>
     </blockquote>
   </li>
 </ol>
 
-<p>위의 두가지 규칙을 염두해 두고 구한 점화식을 이용해서 구현하면 다음과 같은 코드가 된다.</p>
+<p>위의 두가지 규칙을 염두해 두고 구한 점화식을 이용해서 구현하면 다음과 같은 코드가 됩니다.</p>
 <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
 #include &lt;vector&gt;
 </span>
