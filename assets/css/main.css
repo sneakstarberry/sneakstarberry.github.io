@@ -190,3 +190,12 @@ h3:before {
 pre > code {
 	font-size: 18px;
 }
+
+table{
+	width: 100%;
+	border: 1px solid black;
+}
+
+td,th {
+	border: 1px solid black;
+}
